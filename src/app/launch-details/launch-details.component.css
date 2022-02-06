@@ -1,0 +1,24 @@
+.photo-grid {
+  padding-top: 30px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, 300px);
+  justify-content: center;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+}
+::ng-deep mat-card{
+  height: 80%; 
+  padding: 20px;
+}
+::ng-deep .mat-card-image {
+  margin-left: 25% !important;
+  width: 50%!important;
+  height: 50%!important;
+}

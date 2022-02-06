@@ -1,0 +1,48 @@
+<ng-container *ngIf="launchDetails$ | async as launchDetails">
+  <div *ngIf="launchDetails" class="grid-container">
+    <div>
+
+      <h2>
+        <a routerLink="/"><</a> {{ launchDetails.mission_name }}</h2>
+
+
+          <mat-card>
+
+            <img mat-card-image
+              [src]="launchDetails.links.mission_patch" alt="Mission patch of {{ launchDetails.mission_name }}" />
+            <mat-card-content>
+              <p>{{ launchDetails.details }}</p>
+            </mat-card-content>
+          </mat-card>
+
+
+    </div>
+
+    <div>
+      <section>
+        <img src={{launchDetails.links.flickr_images[0]}} alt="Picture of {{ launchDetails.mission_name }}" height="300"
+          width="100%" loading="lazy" />
+        <mat-carousel timings="250ms ease-in" [autoplay]="false" interval="5000" color="accent" maxWidth="300"
+          proportion="34" slides="3" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true"
+          [maintainAspectRatio]="true" [useMouseWheel]="false" orientation="ltr">
+
+          <div *ngFor="let pic of launchDetails.links.flickr_images; let i = index">
+            <mat-carousel-slide class="photo-grid" #matCarouselSlide *ngIf="i % 3 == 0">
+
+              <div class="">
+                <img src={{pic}} width="200px" class="img-responsive" height="200px" style="float:left">
+              </div>
+              <div *ngIf="i + 1 < launchDetails.links.flickr_images.length" class="">
+                <img src={{launchDetails.links.flickr_images[i+1]}} height="200px" width="200px" style="float:left">
+              </div>
+              <div class="" *ngIf="i + 2 < launchDetails.links.flickr_images.length">
+                <img src={{launchDetails.links.flickr_images[i+2]}} width="200px" height="200px" style="float:left">
+              </div>
+            </mat-carousel-slide>
+          </div>
+        </mat-carousel>
+      </section>
+    </div>
+  </div>
+
+</ng-container>

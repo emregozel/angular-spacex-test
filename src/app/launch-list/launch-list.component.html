@@ -1,0 +1,22 @@
+<ng-container *ngIf="pastLaunches$ | async as pastLaunches">
+  <main>
+    <section class="container">
+      <mat-card *ngFor="let launch of pastLaunches.data" [routerLink]="['/', launch.id]">
+        <mat-spinner *ngIf="pastLaunches.loading"> </mat-spinner>
+        <mat-card-header *ngIf="pastLaunches.loaded">
+          <img
+            onerror="this.src='https://image.shutterstock.com/image-vector/upset-magnifying-glass-cute-not-600w-1127749553.jpg';"
+            height="50" width="50" mat-card-avatar loading="lazy" [src]="launch.links.mission_patch_small"
+            alt="Mission patch of {{ launch.mission_name }}" />
+          <mat-card-title>{{ launch.mission_name }}</mat-card-title>
+          <mat-card-subtitle>{{ launch.rocket.rocket_name }} - launched
+            {{ launch.launch_date_utc |dateAgo }}</mat-card-subtitle>
+        </mat-card-header>
+        <img *ngIf="pastLaunches.loaded" [hidden]="pastLaunches.loading"
+          onerror="this.src='https://image.shutterstock.com/image-vector/upset-magnifying-glass-cute-not-600w-1127749553.jpg';"
+          height="300" width="300" mat-card-image loading="lazy" [src]="launch.links.flickr_images[0]"
+          alt="Photo of {{ launch.mission_name }}" />
+      </mat-card>
+    </section>
+  </main>
+</ng-container>
