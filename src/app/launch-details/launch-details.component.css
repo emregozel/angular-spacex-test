@@ -22,3 +22,8 @@
   width: 50%!important;
   height: 50%!important;
 }
+::ng-deep .img-carousel {
+  float: left;
+  width: 200px;
+  height: 200px;
+}
